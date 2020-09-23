@@ -2,6 +2,7 @@ import React from 'react';
 import { scaleBand, scaleLinear, max } from 'd3';
 
 import { useData } from './useData';
+import { AxisBottom } from './AxisBottom';
 
 const width = 960;
 const height = 500;
@@ -31,21 +32,7 @@ export const App = () => {
   return (
   	<svg width={width} height={height}>
       <g transform={`translate(${margin.left},${margin.top})`}>
-        {xScale.ticks().map(tickValue => (
-          <g 
-            key={tickValue}
-            transform={`translate(${xScale(tickValue)}, 0)`} 
-          >
-            <line y2={innerHeight} stroke="black" />
-            <text 
-              y={innerHeight + 3} 
-              dy=".71em"
-              textAnchor="middle"
-            >
-              {tickValue}
-            </text>
-          </g>
-        ))}
+        <AxisBottom xScale={xScale} innerHeight={innerHeight} />
         {yScale.domain().map(tickValue => (
             <text
               key={tickValue}
