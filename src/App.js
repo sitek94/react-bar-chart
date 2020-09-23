@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { csv, scaleBand, scaleLinear, max } from 'd3';
+import React from 'react';
+import { scaleBand, scaleLinear, max } from 'd3';
 
-const csvUrl =
-  'https://gist.githubusercontent.com/curran/0ac4077c7fc6390f5dd33bf5c06cb5ff/raw/605c54080c7a93a417a3cea93fd52e7550e76500/UN_Population_2019.csv';
+import { useData } from './useData';
 
 const width = 960;
 const height = 500;
@@ -16,17 +15,8 @@ const innerWidth = width - margin.left - margin.right;
 const innerHeight = height - margin.top - margin.bottom;
 
 export const App = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const row = d => {
-    	d.Population = +d['2020'];
-      return d;
-    }
-    csv(csvUrl, row)
-      .then(data => setData(data.slice(0, 10)));
-  }, []);
-
+  const data = useData();
+  
   if (!data) return <pre>Loading...</pre>;
 
   const yScale = scaleBand()
