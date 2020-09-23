@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const Marks = ({ data, yScale, xScale }) => data.map(d => (
+export const Marks = ({ data, yScale, xScale, yValue, xValue  }) => data.map(d => (
   <rect
-    key={d.Country}
+    key={yValue(d)}
     x={0}
-    y={yScale(d.Country)}
-    width={xScale(d.Population)} 
+    y={yScale(yValue(d))}
+    width={xScale(xValue(d))} 
     height={yScale.bandwidth()} 
   />
 ))
