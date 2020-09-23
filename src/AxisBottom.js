@@ -1,7 +1,8 @@
 import React from 'react';
 
-export const AxisBottom = ({ xScale, innerHeight }) => xScale.ticks().map(tickValue => (
+export const AxisBottom = ({ xScale, innerHeight, tickFormat }) => xScale.ticks().map(tickValue => (
   <g 
+    className="tick"
     key={tickValue}
     transform={`translate(${xScale(tickValue)}, 0)`} 
   >
@@ -11,7 +12,7 @@ export const AxisBottom = ({ xScale, innerHeight }) => xScale.ticks().map(tickVa
       dy=".71em"
       textAnchor="middle"
     >
-      {tickValue}
+      {tickFormat(tickValue)}
     </text>
   </g>
 ))

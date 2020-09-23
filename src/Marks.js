@@ -2,6 +2,7 @@ import React from 'react';
 
 export const Marks = ({ data, yScale, xScale, yValue, xValue  }) => data.map(d => (
   <rect
+    className="mark"
     key={yValue(d)}
     x={0}
     y={yScale(yValue(d))}
