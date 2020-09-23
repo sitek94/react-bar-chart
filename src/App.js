@@ -3,6 +3,7 @@ import { scaleBand, scaleLinear, max } from 'd3';
 
 import { useData } from './useData';
 import { AxisBottom } from './AxisBottom';
+import { AxisLeft } from './AxisLeft';
 
 const width = 960;
 const height = 500;
@@ -33,17 +34,7 @@ export const App = () => {
   	<svg width={width} height={height}>
       <g transform={`translate(${margin.left},${margin.top})`}>
         <AxisBottom xScale={xScale} innerHeight={innerHeight} />
-        {yScale.domain().map(tickValue => (
-            <text
-              key={tickValue}
-              x="-6"
-              dy=".32em"
-              y={yScale(tickValue) + + (yScale.bandwidth() / 2)}
-              textAnchor="end"
-            >
-              {tickValue}
-            </text>
-        ))}
+        <AxisLeft yScale={yScale} />
         {data.map(d => (
           <rect
             key={d.Country}
